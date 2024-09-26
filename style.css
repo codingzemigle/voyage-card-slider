@@ -1,0 +1,456 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #000;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.container-geral {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  padding: 20px 20px;
+}
+
+.components-interno-geral {
+  position: relative;
+  height: 100%;
+}
+
+.components-interno-geral:hover .components-fundo-imagem:after {
+  opacity: 1;
+}
+
+.components {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 19.2%;
+  height: 60%;
+  border-radius: 3px;
+  background: #252525;
+  transition: transform 0.6s 0.7s, width 0.7s, opacity 0.6s 0.7s,
+    z-index 0s 1.3s;
+  will-change: transform, width, opacity;
+}
+
+.components:not(.caixa-container-ativo) {
+  cursor: pointer;
+}
+
+.components-sem-rolagem {
+  overflow: hidden;
+  position: relative;
+  border-radius: 3px;
+  height: 100%;
+}
+
+.components-interno {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  transition: transform 1s;
+}
+
+.container-geral.js-container-geral .components-interno {
+  transform: translate3d(0, 100%, 0);
+}
+
+.components-fundo-imagem {
+  position: relative;
+  height: 100%;
+  transition: transform 0.6s 0.7s;
+  will-change: transform;
+}
+
+.container-geral.caixa--components-ativo .components-fundo-imagem {
+  width: calc(100vw - 140px);
+}
+
+.components-fundo-imagem:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -5%;
+  width: 100%;
+  height: 110%;
+  background-size: cover;
+  background-position: center center;
+  transition: transform 1s;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.container-geral.js-container-geral .components-fundo-imagem:before {
+  transform: translate3d(0, -100%, 0) scale(1.2);
+}
+
+.components.caixa-container-ativo .components-fundo-imagem:before {
+  transition: transform 0.8s;
+}
+
+.components-fundo-imagem:after {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.container-geral.caixa--components-ativo .components-fundo-imagem:after {
+  transition: opacity 0.5s 1.4s;
+  opacity: 1 !important;
+}
+
+.components-visual-inicial {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 1.5rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s 1.2s;
+}
+
+.container-geral.js-container-geral .components-visual-inicial {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.container-geral.caixa--components-ativo .components-visual-inicial {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s;
+}
+
+.components-titulo {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+}
+
+.components-content {
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 25px 30px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.1s;
+}
+
+.components.caixa-container-ativo .components-content {
+  z-index: 2;
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.5s 1.4s;
+}
+
+.components-text {
+  text-transform: uppercase;
+  font-size: 30px;
+  color: #fff;
+}
+
+.components-botao-fechar {
+  z-index: -1;
+  position: absolute;
+  right: 30px;
+  top: 25px;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0s 0.45s;
+  cursor: pointer;
+}
+
+.components.caixa-container-ativo .components-botao-fechar {
+  z-index: 5;
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0s 1.4s;
+}
+
+.components-botao-fechar:before,
+.components-botao-fechar:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 5px;
+  background: #fff;
+  opacity: 0;
+  transition: opacity 0s;
+}
+
+.components.caixa-container-ativo .components-botao-fechar:before,
+.components.caixa-container-ativo .components-botao-fechar:after {
+  opacity: 1;
+}
+
+.components-botao-fechar:before {
+  transform: rotate(90deg) translateX(100%);
+}
+
+.components.caixa-container-ativo .components-botao-fechar:before {
+  transition: all 0.3s 1.4s cubic-bezier(0.72, 0.09, 0.32, 1.57);
+  transform: rotate(45deg) translateX(0);
+}
+
+.components-botao-fechar:after {
+  transform: rotate(-45deg) translateX(100%);
+}
+
+.components.caixa-container-ativo .components-botao-fechar:after {
+  transition: all 0.3s 1.55s cubic-bezier(0.72, 0.09, 0.32, 1.57);
+  transform: rotate(-45deg) translateX(0);
+}
+
+.components-index {
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 3%;
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  text-align: center;
+  font-size: 8rem;
+  line-height: 0.85;
+  font-weight: bold;
+  transition: transform 0.5s, opacity 0.3s 1.4s;
+  transform: translate3d(0, 1vw, 0);
+}
+
+.components:hover .components-index {
+  transform: translate3d(0, 0, 0);
+}
+
+.container-geral.caixa--components-ativo .components-index {
+  transition: transform 0.5s, opacity 0.3s;
+  opacity: 0;
+}
+
+.components-index-back,
+.components-index-front {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.components-index-back {
+  color: #2f3840;
+  opacity: 0;
+  transition: opacity 0.25s 0.25s;
+}
+
+.components:hover .components-index-back {
+  transition: opacity 0.25s;
+  opacity: 1;
+}
+
+.components-index-overlay {
+  overflow: hidden;
+  position: relative;
+  transform: translate3d(0, 100%, 0);
+  transition: transform 0.5s 0.1s;
+  color: transparent;
+}
+
+.components-index-overlay:before {
+  content: attr(data-index);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  transform: translate3d(0, -100%, 0);
+  transition: transform 0.5s 0.1s;
+}
+
+.components:hover .components-index-overlay {
+  transform: translate3d(0, 0, 0);
+}
+
+.components:hover .components-index-overlay:before {
+  transform: translate3d(0, 0, 0);
+}
+
+.components:nth-child(1) {
+  transform: translate3d(0%, 0, 0);
+  transform-origin: 50% 50%;
+}
+
+.container-geral.caixa--components-ativo
+  .components:nth-child(1):not(.caixa-container-ativo) {
+  transform: scale(0.5) translate3d(0%, 0, 0);
+  opacity: 0;
+  transition: transform 0.95s, opacity 0.95s;
+}
+
+.components:nth-child(1) .components-interno {
+  transition-delay: 0s;
+}
+
+.components:nth-child(1) .components-fundo-imagem {
+  transform: translate3d(0%, 0, 0);
+}
+
+.components:nth-child(1) .components-fundo-imagem:before {
+  transition-delay: 0s;
+  background-image: url("/images/html.jpg");
+}
+
+.components:nth-child(2) {
+  transform: translate3d(105.2083333333%, 0, 0);
+  transform-origin: 155.2083333333% 50%;
+}
+
+.container-geral.caixa--components-ativo
+  .components:nth-child(2):not(.caixa-container-ativo) {
+  transform: scale(0.5) translate3d(105.2083333333%, 0, 0);
+  opacity: 0;
+  transition: transform 0.95s, opacity 0.95s;
+}
+
+.components:nth-child(2) .components-interno {
+  transition-delay: 0.1s;
+}
+
+.components:nth-child(2) .components-fundo-imagem:before {
+  transition-delay: 0.1s;
+  background-image: url("/images/css.jpg");
+}
+
+.components:nth-child(3) {
+  transform: translate3d(210.4166666667%, 0, 0);
+  transform-origin: 260.4166666667% 50%;
+}
+
+.container-geral.caixa--components-ativo
+  .components:nth-child(3):not(.caixa-container-ativo) {
+  transform: scale(0.5) translate3d(210.4166666667%, 0, 0);
+  opacity: 0;
+  transition: transform 0.95s, opacity 0.95s;
+}
+
+.components:nth-child(3) .components-interno {
+  transition-delay: 0.2s;
+}
+
+.components:nth-child(3) .components-fundo-imagem:before {
+  transition-delay: 0.2s;
+  background-image: url("/images/javascript.jpg");
+}
+
+.components:nth-child(4) {
+  transform: translate3d(315.625%, 0, 0);
+  transform-origin: 365.625% 50%;
+}
+
+.container-geral.caixa--components-ativo
+  .components:nth-child(4):not(.caixa-container-ativo) {
+  transform: scale(0.5) translate3d(315.625%, 0, 0);
+  opacity: 0;
+  transition: transform 0.95s, opacity 0.95s;
+}
+
+.components:nth-child(4) .components-interno {
+  transition-delay: 0.3s;
+}
+
+.components:nth-child(4) .components-fundo-imagem:before {
+  transition-delay: 0.3s;
+  background-image: url("/images/git.jpg");
+}
+
+.components:nth-child(5) {
+  transform: translate3d(420.8333333333%, 0, 0);
+  transform-origin: 470.8333333333% 50%;
+}
+
+.container-geral.caixa--components-ativo
+  .components:nth-child(5):not(.caixa-container-ativo) {
+  transform: scale(0.5) translate3d(420.8333333333%, 0, 0);
+  opacity: 0;
+  transition: transform 0.95s, opacity 0.95s;
+}
+
+.components:nth-child(5) .components-interno {
+  transition-delay: 0.4s;
+}
+
+.components:nth-child(5) .components-fundo-imagem:before {
+  transition-delay: 0.4s;
+  background-image: url("/images/react.jpg");
+}
+
+.components:hover .components-fundo-imagem:after {
+  opacity: 0;
+}
+
+.components.caixa-container-ativo {
+  z-index: 1;
+  width: 100%;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.6s, width 0.7s 0.7s, z-index 0s;
+}
+
+.components.caixa-container-ativo .components-fundo-imagem {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.6s;
+}
+
+.components.caixa-container-ativo .components-fundo-imagem:before {
+  transition-delay: 0.6s;
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 768px) {
+  .components-titulo {
+    font-size: 12px;
+  }
+  
+  .components-text {
+  text-transform: uppercase;
+  font-size: 15px;
+}
+  
+.components-botao-fechar {
+  z-index: -1;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  width: 30px;
+  height: 30px;
+}
+  
+.components-content {
+  padding: 15px 20px;
+}
+  
+.components-index {
+  font-size: 4rem;
+}
+}
